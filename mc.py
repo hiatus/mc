@@ -7,6 +7,7 @@ import argparse
 import music
 from mode import *
 
+
 _banner = sys.argv[0].split('/')[-1].split('.')[0] + ''' [options] [root]?
     -h, --help                this
     -l, --list                list known modes
@@ -16,6 +17,7 @@ _banner = sys.argv[0].split('/')[-1].split('.')[0] + ''' [options] [root]?
     -c, --chords   [n1,n2..]  build chords from arbitrary scales
     -i, --id       [n1,n2..]  identify the mode of a scale
 '''
+
 
 def parse_args():
     parser = argparse.ArgumentParser(usage = _banner, add_help = False)
@@ -74,6 +76,7 @@ def parse_args():
             raise ValueError(f"Invalid note: '{args.root}'")
 
     return args
+
 
 def main(args):
     if args.list:

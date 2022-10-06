@@ -8,40 +8,43 @@ _notes = {
 
     # Translate all notes names into the default (also used to validate notes)
     'all_default':{
-        'C':'C', 'C#':'Db', 'Db':'Db', 'D':'D', 'D#':'Eb', 'Eb':'Eb', 'E':'E',
-        'F':'F', 'F#':'Gb', 'Gb':'Gb', 'G':'G', 'G#':'Ab', 'Ab':'Ab', 'A':'A',
-        'A#':'Bb', 'Bb':'Bb','B':'B'
+        'C': 'C', 'C#': 'Db', 'Db': 'Db', 'D': 'D', 'D#': 'Eb', 'Eb': 'Eb',
+        'E': 'E', 'F': 'F', 'F#': 'Gb', 'Gb': 'Gb', 'G': 'G', 'G#': 'Ab',
+        'Ab': 'Ab', 'A': 'A', 'A#': 'Bb', 'Bb': 'Bb', 'B': 'B'
     },
 }
 
 # Semitones in each interval represented in flats and sharps
 _intervals = {
     'flat':{
-        1:'bII', 2:'II', 3:'bIII', 4:'III', 5:'IV', 6:'bV', 7:'V', 8:'bVI',
-        9:'VI', 10:'bVII', 11:'VII'
+        1: 'bII', 2: 'II', 3: 'bIII', 4: 'III', 5: 'IV', 6: 'bV', 7: 'V',
+        8: 'bVI', 9: 'VI', 10: 'bVII', 11: 'VII'
     },
 
     'sharp':{
-        1:'#I', 2:'II', 3:'#II', 4:'III', 5:'IV', 6:'#IV', 7:'V', 8:'#V',
-        9:'VI', 10:'#VI', 11:'VII'
+        1: '#I', 2: 'II', 3: '#II', 4: 'III', 5: 'IV', 6: '#IV', 7: 'V',
+        8: '#V', 9: 'VI', 10: '#VI', 11: 'VII'
     },
 
     # Default accidental scheme
     'default':{
-        1:'bII', 2:'II', 3:'bIII', 4:'III', 5:'IV', 6:'bV', 7:'V', 8:'bVI',
-        9:'VI', 10:'bVII', 11:'VII'
+        1: 'bII', 2: 'II', 3: 'bIII', 4: 'III', 5: 'IV', 6: 'bV', 7: 'V',
+        8: 'bVI', 9: 'VI', 10: 'bVII', 11: 'VII'
     }
 }
 
 # Chord types identified by the product of it's intervals, in semitones, from I
 # Add: 9, min9, 7(9), 7M(9) ...
 _chords = {
-    18:'dim', 21: 'min', 28:'maj', 32:'maj(#5)', 162:'dim7', 180:'min7(b5)',
-    210:'min7', 231:'min(M7)', 280:'7', 308:'maj7', 352:'maj7(#5)'
+    18: 'dim', 21: 'min', 28: 'maj', 32: 'maj(#5)', 162: 'dim7',
+    180: 'min7(b5)', 210:'min7', 231:'min(M7)', 280:'7', 308:'maj7',
+    352:'maj7(#5)'
 }
+
 
 # Identify if a string represents a valid note
 is_note = lambda s: s.capitalize() in _notes['all_default']
+
 
 # Build a list triads from a list of intervals
 def build_triads(intervals: list) -> list:
@@ -58,6 +61,7 @@ def build_triads(intervals: list) -> list:
 
     return triads
 
+
 # Build a list of tetrads from a list of intervals
 def build_tetrads(intervals: list) -> list:
     tetrads = []
@@ -72,6 +76,7 @@ def build_tetrads(intervals: list) -> list:
         raise RuntimeError("Given intervals produce tetrads currently unknown")
 
     return tetrads
+
 
 # Build a list of intervals from a list of notes
 def build_intervals(scale: list) -> list:
@@ -89,6 +94,7 @@ def build_intervals(scale: list) -> list:
 
     return intervals
 
+
 # Build a list of notes from a list of intervals and a root
 def build_scale(root: str, intervals: list) -> list:
     scale = []
@@ -101,6 +107,7 @@ def build_scale(root: str, intervals: list) -> list:
         scale.append(alpha[(alpha.index(root) + sum(intervals[:i])) % len(alpha)])
 
     return scale
+
 
 # Return roman notation of numeric intervals
 def romanize(intervals: list) -> list:
